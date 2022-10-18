@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigtion"
+    app:startDestination="@id/gralleryFragment">
+
+    <fragment
+        android:id="@+id/gralleryFragment"
+        android:name="com.example.gallery.fragments.GralleryFragment"
+        android:label="Grallery"
+        tools:layout="@layout/grallery_fragment">
+        <action
+            android:id="@+id/action_gralleryFragment_to_photoFragment"
+            app:destination="@id/photoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoFragment"
+        android:name="com.example.gallery.fragments.PhotoFragment"
+        android:label="Photo"
+        tools:layout="@layout/photo_fragment" />
+</navigation>
