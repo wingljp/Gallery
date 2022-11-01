@@ -1,8 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'packer'
 android {
+    signingConfigs {
+        config {
+            keyAlias 'test'
+            keyPassword '123456'
+            storeFile file('E:/copy/test.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 33
     buildToolsVersion "33.0.0"
 
@@ -25,6 +33,27 @@ android {
     androidExtensions {
 
         experimental = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packer {
+        // 是否检查Gradle配置中的signingConfig，默认不检查
+//        checkSigningConfig = true
+        // 是否检查Gradle配置中的zipAlignEnabled，默认不检查
+//        checkZipAlign = true
+        // 指定渠道打包输出文件名格式
+        //包名-渠道名-正式环境（release）-版本名称-版本号-最终APK文件的MD5哈希值
+        archiveNameFormat = '${appPkg}-${flavorName}-${buildType}-v${versionName}-${versionCode}-${fileMD5}'
+        // 指定渠道打包输出目录
+        archiveOutput = file(new File(project.rootProject.buildDir.path, "easyto_apks"))
+        /* // 指定渠道打包需要修改的AndroidManifest文件项
+         manifestMatcher = ['UMENG_CHANNEL', 'Promotion_Market']*/
+        // 指定是否使用build版本号自增
+//        buildNumberAuto = true
+        // 指定使用版本号自增的buildType，默认是全部
+//        buildNumberTypeMatcher = ['release', 'beta']
     }
 }
 
@@ -54,5 +83,7 @@ dependencies {
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.google.android.material:material:1.2.0'
+
+    implementation 'com.mcxiaoke.packer-ng:helper:2.0.1'
 
 }

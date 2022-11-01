@@ -1,8 +1,11 @@
 package com.example.gallery.fragments
 
+import android.app.ActivityOptions
 import android.app.Application
+import android.os.Build
 import android.util.Log
 import android.util.Log.DEBUG
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,22 +19,18 @@ import com.example.gallery.modes.PhotoItem
 import com.example.gallery.modes.baobei
 import com.google.gson.Gson
 
-class GralleryViewModel (application: Application): AndroidViewModel(application) {
+class GralleryViewModel(application: Application) : AndroidViewModel(application) {
     private val _photoLiveList = MutableLiveData<List<PhotoItem>>()
     val photoLiveData: LiveData<List<PhotoItem>>
-        get() =
-            _photoLiveList
+        get() = _photoLiveList
 
     fun fetchData() {
         val stringRequest = StringRequest(
 
-            Request.Method.GET,
-            getUrl(),
-            {
+            Request.Method.GET, getUrl(), {
 
                 _photoLiveList.value = Gson().fromJson(it, baobei::class.java).hits.toList()
-            },
-            {
+            }, {
 
                 Log.d("hello", it.toString())
             }
@@ -42,11 +41,12 @@ class GralleryViewModel (application: Application): AndroidViewModel(application
 
     }
 
-    fun getUrl(): String {
+
+    private fun getUrl(): String {
 
         return "https://pixabay.com/api/?key=30514833-2f7a221fa5c261cf3c03d4b41&q=${keys.random()}&per_page=100"
     }
 
-    private val keys = arrayOf("computer", "cat", "dog", "sheep", "photo","car")
+    private val keys = arrayOf("computer", "cat", "dog", "sheep", "photo", "car")
 
 }
