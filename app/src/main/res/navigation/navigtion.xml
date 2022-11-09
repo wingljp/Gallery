@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/gralleryFragment"
-        android:name="com.example.gallery.fragments.GralleryFragment"
+        android:name="com.example.pagergallery.fragments.GalleryFragment"
         android:label="Grallery"
         tools:layout="@layout/grallery_fragment">
         <action
-            android:id="@+id/action_gralleryFragment_to_photoFragment"
-            app:destination="@id/photoFragment" />
+            android:id="@+id/action_gralleryFragment_to_pagerPhotoFragment"
+            app:destination="@id/pagerPhotoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/photoFragment"
-        android:name="com.example.gallery.fragments.PhotoFragment"
-        android:label="Photo"
-        tools:layout="@layout/photo_fragment" />
+        android:id="@+id/pagerPhotoFragment"
+        android:name="com.example.pagergallery.fragments.PagerPhotoFragment"
+        android:label="fragment_pager_photo"
+        tools:layout="@layout/fragment_pager_photo" />
 </navigation>

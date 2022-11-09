@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
+    <string name="app_name">PagerGallery</string>
+
+
+
+    <string name="permission_prompt">同意权限才可以下载哦</string>
+</resources>
